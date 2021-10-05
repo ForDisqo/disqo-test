@@ -5,7 +5,7 @@ interface IProps {
 }
 
 const Notepad: React.FC<IProps> = ({ children }) => {
-    return children;
+    return <div> {children} </div>;
 };
 
 export default Notepad;

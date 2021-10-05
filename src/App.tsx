@@ -9,19 +9,20 @@ import {
     Switch,
     Route,
 } from 'react-router-dom';
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
       <Router>
-    <div className="App">
+        <div className="App">
             <Layout theme={Theme.light}>
                 <Switch>
                     <Route exact path={'/'} component={Notepad} />
-                    <Route exact path={'/dashboard'} component={Dashboard} />
+                    <Route  path={'/dashboard'} component={Dashboard} />
+                    <Route component={NotFound} />
                 </Switch>
             </Layout>
-    </div>
-
+        </div>
       </Router>
   );
 }
