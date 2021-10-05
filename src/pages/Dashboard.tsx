@@ -5,7 +5,7 @@ interface IProps {
 }
 
 const Dashboard: React.FC<IProps> = ({ children }) => {
-    return <div>{children}</div>;
+    return <div><h1>Dashboard</h1>{children}</div>;
 };
 
 export default Dashboard;
