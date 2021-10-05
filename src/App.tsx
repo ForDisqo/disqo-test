@@ -2,30 +2,27 @@ import React from 'react';
 import './App.style.scss';
 import Layout, {Theme} from "./components/layout/Layout";
 
+import Notepad from "./pages/Notepad";
+import Dashboard from "./pages/Dashboard";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+} from 'react-router-dom';
+
 function App() {
-
-
   return (
+      <Router>
     <div className="App">
-        <div>
-            <Layout theme={Theme.light}><div>---</div> </Layout>
-        </div>
-
-
-        <div className="container">
-            <div className="row">
-                <div className="col-sm">
-                    One of three columns
-                </div>
-                <div className="col-sm">
-                    One of three columns
-                </div>
-                <div className="col-sm">
-                    One of three columns
-                </div>
-            </div>
-        </div>
+            <Layout theme={Theme.light}>
+                <Switch>
+                    <Route exact path={'/'} component={Notepad} />
+                    <Route exact path={'/dashboard'} component={Dashboard} />
+                </Switch>
+            </Layout>
     </div>
+
+      </Router>
   );
 }
 
