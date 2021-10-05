@@ -1,6 +1,11 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/bootstrap.scss";
 @import "./config/styles/Variables.styles";
 
 body {
   background-color: $bodyBackgroundColor;
   font-family: $mainFont;
+  padding: 24px;
 }

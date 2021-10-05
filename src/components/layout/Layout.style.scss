@@ -1,11 +1,8 @@
-body{
-  background-color:#EEE;
-  padding: 24px;
-}
+@import "src/config/styles/Variables.styles";
 
 .card{
   overflow:hidden;
-  border: 2px solid #CCC;
+  border: 2px solid $bodyBackgroundColor;
   border-radius:8px;
   min-height:450px;
   box-shadow: 0 0 12px 0 rgba(0,0,0,0.2);
