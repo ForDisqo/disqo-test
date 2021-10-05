@@ -1,0 +1,6 @@
+@import "./config/styles/Variables.styles";
+
+body {
+  background-color: $bodyBackgroundColor;
+  font-family: $mainFont;
+}
