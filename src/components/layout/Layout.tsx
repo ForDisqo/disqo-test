@@ -1,14 +1,14 @@
 import React from "react";
 import "./Layout.style.scss";
 
-export enum Theme {
+export enum ThemeEnum {
     light= "light",
     dark = "dark",
 }
 
 interface IProps {
     children: React.ReactChild | React.ReactNode;
-    theme: Theme;
+    theme: ThemeEnum;
 }
 
 const Layout: React.FC<IProps> = ({theme, children}) => {

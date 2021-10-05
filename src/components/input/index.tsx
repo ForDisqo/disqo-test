@@ -5,14 +5,16 @@ import "./Input.styles.scss";
 interface IProps {
   placeholder: string;
   name: string;
-  value?: string;
+  onChange?: (e: React.FormEvent<HTMLInputElement>) => void;
+  onBlur?: () => void;
+  defaultValue?: string;
   id?: string;
 }
 
 const Input: React.FC<IProps> = ({ id = uuidv4(), placeholder, ...rest }) => {
   return (
     <div className="form-group">
-        <input id={id} placeholder={placeholder} className="form-control" {...rest} />
+        <input type='text' contentEditable={true} disabled={false} id={id} placeholder={placeholder} className="form-control" {...rest} />
     </div>
   );
 };
