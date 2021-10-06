@@ -10,6 +10,7 @@ class GithubApiClient extends HttpClient {
         Authorization: `token ${AUTHORIZE_TOKEN}`,
       },
     });
+
   }
 
   get gists() {

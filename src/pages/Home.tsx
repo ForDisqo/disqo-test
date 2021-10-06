@@ -1,7 +1,4 @@
 import React from "react";
-import Button, {ButtonTypeEnum} from "../components/button";
-import Input from "../components/input";
-import Textarea from "../components/textarea";
 
 interface IProps {
     children: JSX.Element;

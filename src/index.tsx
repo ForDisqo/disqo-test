@@ -2,11 +2,25 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import reportWebVitals from "./reportWebVitals";
+import setupStore from "./redux/setupStore";
+import {Provider} from "react-redux";
+
+
+const OLD_REDUX_STORE = localStorage.getItem("oldReduxState");
+
+let REDUX_INITIAL_STATE = {};
+if (OLD_REDUX_STORE) {
+    REDUX_INITIAL_STATE = JSON.parse(OLD_REDUX_STORE);
+}
+
+const store = setupStore(REDUX_INITIAL_STATE);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <Provider store={store}>
+            <App />
+      </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

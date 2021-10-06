@@ -13,14 +13,14 @@ export const enum ButtonTypeEnum {
 
 interface IProps {
     text: string;
-    onClick: () => void;
+    onClick: (e:any) => void;
     disabled?: boolean;
     className?: string;
-    b: ButtonTypeEnum
+    buttonType: ButtonTypeEnum
 }
 
-const Button: React.FC<IProps> = ({text, b, ...rest}) => {
-    return <button type="button" className={b +" btn"} {...rest}>{text}</button>;
+const Button: React.FC<IProps> = ({text, buttonType, ...rest}) => {
+    return <button type="button" className={buttonType +" btn"} {...rest}>{text}</button>;
 };
 
 export default Button;

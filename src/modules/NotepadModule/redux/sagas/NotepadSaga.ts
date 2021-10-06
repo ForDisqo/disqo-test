@@ -87,7 +87,6 @@ export function* addNotepad(action: PayloadAction<{ notepad: INotepad; cb: () =>
       files,
     });
     yield put(addNotepadSuccess(data));
-
     cb();
   } catch (e) {
     console.error(e);

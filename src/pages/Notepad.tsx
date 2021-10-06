@@ -34,21 +34,21 @@ const Notepad: React.FC<IProps> = ({ children }) => {
                                 <Button
                                     text="View State"
                                     onClick={handleClick}
-                                    b={ButtonTypeEnum.view}
+                                    buttonType={ButtonTypeEnum.view}
                                 />
                             </div>
                             <div className="col-3">
                                 <Button
                                     text="Save"
                                     onClick={handleClick}
-                                    b={ButtonTypeEnum.save}
+                                    buttonType={ButtonTypeEnum.save}
                                 />
                             </div>
                             <div className="col-3">
                                 <Button
                                     text="Delete"
                                     onClick={handleClick}
-                                    b={ButtonTypeEnum.delete}
+                                    buttonType={ButtonTypeEnum.delete}
                                 />
                             </div>
                         </div>
@@ -81,7 +81,7 @@ const Notepad: React.FC<IProps> = ({ children }) => {
                                 <Button
                                     text="Add"
                                     onClick={handleClick}
-                                    b={ButtonTypeEnum.add}
+                                    buttonType={ButtonTypeEnum.add}
                                 />
                             </div>
                         </div>
@@ -104,7 +104,7 @@ const Notepad: React.FC<IProps> = ({ children }) => {
                                 <Button
                                     text="Delete"
                                     onClick={handleClick}
-                                    b={ButtonTypeEnum.delete}
+                                    buttonType={ButtonTypeEnum.delete}
                                 />
                             </div>
                         </div>
