@@ -6,14 +6,14 @@ interface IProps {
   placeholder: string;
   name: string;
   id?: string;
-  children?: JSX.Element;
+  children?: React.ReactChild | React.ReactNode;
 }
 
 const Textarea: React.FC<IProps> = ({ id = uuidv4(), children , ...rest }) => {
   return (
     <div className="form-group">
       <textarea id={id}  rows={3} className="form-control"   {...rest}>
-        {children}
+          {children}
       </textarea>
     </div>
   );

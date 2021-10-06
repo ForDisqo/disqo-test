@@ -7,6 +7,7 @@ export const enum ButtonTypeEnum {
     edit = 'blue',
     save = 'blue',
     delete = 'red',
+    view = 'view',
 }
 
 
