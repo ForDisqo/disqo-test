@@ -1,4 +1,4 @@
-import React, from "react";
+import React from "react";
 import NotepadModule from "../modules/NotepadModule";
 
 const Notepad = () => {
