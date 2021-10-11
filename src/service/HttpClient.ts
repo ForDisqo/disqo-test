@@ -27,43 +27,26 @@ class HttpClient {
   }
 
   get(endpoint: string, options = {}) {
-    return this._fetchJSON(endpoint, {
-      ...options,
-      method: "GET",
-    });
+    return this._fetchJSON(endpoint, {...options, method: "GET",});
   }
 
   post<T>(endpoint: string, body: T, options = {}) {
-    return this._fetchJSON(endpoint, {
-      ...options,
-      body: body ? JSON.stringify(body) : undefined,
-      method: "POST",
-    });
+    return this._fetchJSON(endpoint, {...options, body: body ? JSON.stringify(body) : undefined,
+      method: "POST",});
   }
 
   put<T>(endpoint: string, body: T, options = {}) {
-    return this._fetchJSON(endpoint, {
-      ...options,
-      body: body ? JSON.stringify(body) : undefined,
-      method: "PUT",
-    });
+    return this._fetchJSON(endpoint, {...options, body: body ? JSON.stringify(body) : undefined,
+      method: "PUT",});
   }
 
   patch<T>(endpoint: string, operations: T, options = {}) {
-    return this._fetchJSON(endpoint, {
-      parseResponse: false,
-      ...options,
-      body: JSON.stringify(operations),
-      method: "PATCH",
-    });
+    return this._fetchJSON(endpoint, {parseResponse: false, ...options, body: JSON.stringify(operations),
+      method: "PATCH",});
   }
 
   delete(endpoint: string, options = {}) {
-    return this._fetchJSON(endpoint, {
-      parseResponse: false,
-      ...options,
-      method: "DELETE",
-    });
+    return this._fetchJSON(endpoint, {parseResponse: false, ...options, method: "DELETE",});
   }
 }
 
