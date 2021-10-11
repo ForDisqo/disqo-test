@@ -8,15 +8,13 @@ interface IProps {
     id?: string;
     onChange?: (e?: any) => void;
     onBlur?: () => void;
-    children?: React.ReactChild | React.ReactNode;
+    defaultValue?: string;
 }
 
-const Textarea: React.FC<IProps> = ({id = uuidv4(), children, ...rest}) => {
+const Textarea: React.FC<IProps> = ({id = uuidv4(),...rest}) => {
     return (
         <div className="form-group">
-              <textarea  id={id} rows={3} className="form-control"   {...rest}>
-                  {children}
-              </textarea>
+              <textarea  id={id} rows={3} className="form-control"   {...rest} />
         </div>
     );
 };
