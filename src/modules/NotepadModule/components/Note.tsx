@@ -8,11 +8,13 @@ import "./Note.styles.scss";
 interface IProps {
     onChange?: (key: string, value: string, id: string) => void;
     onRemove?: (data: INote) => void;
+    mode?: string,
+    onAdd?: (data: INote) => void;
     id?: string;
     data?: INote
 }
 
-const Note: React.FC<IProps> = ({data, onChange, onRemove, }) => {
+const Note: React.FC<IProps> = ({data, onChange, onRemove, onAdd , mode}) => {
     const title = data?.title || "";
     const description= data?.description || "";
     const noteId = data?.id || "";
@@ -37,6 +39,11 @@ const Note: React.FC<IProps> = ({data, onChange, onRemove, }) => {
     const handleRemove = () =>{
         // @ts-ignore
         onRemove(noteData);
+    }
+
+    const handleAdd = () => {
+        // @ts-ignore
+        onAdd(noteData)
     }
 
     return (
@@ -69,6 +76,13 @@ const Note: React.FC<IProps> = ({data, onChange, onRemove, }) => {
                         />
                     </div>
                 </div>
+                {(mode === "create")?(<div className="row mx-auto justify-content-between">
+                        <div className="col-6">
+                            <Button text="Add" onClick={handleAdd} buttonType={ButtonTypeEnum.add}/>
+                        </div>
+                    </div>):(<div></div>)}
+
+
             </div>
         </div>
     );

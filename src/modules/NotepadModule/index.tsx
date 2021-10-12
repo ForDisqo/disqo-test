@@ -11,7 +11,11 @@ import {useDispatch, useSelector} from "react-redux";
 import Textarea from "../../components/textarea";
 import Note from "./components/Note";
 
-const NotepadModule = () => {
+interface IProps {
+    NotepadMode?: string
+}
+
+const NotepadModule: React.FC<IProps> = ({NotepadMode}) => {
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -21,10 +25,18 @@ const NotepadModule = () => {
     const [newNoteDesc, setNewNoteDesc] = useState("");
     const { id }: { id: string } = useParams();
     const notepad: INotepad = useSelector((state: RootState) => state.notepads.idMap[id]);
-    const [mode, setMode] = useState<string>("update")
+    const [mode, setMode] = useState<string>("")
 
     React.useEffect(() => {
+        if(NotepadMode) {setMode(NotepadMode)}else
+        if(!id){setMode("create");
+        }else{
+            dispatch(getNotepadById(id));
+            setMode("update")
+        }
         (!id) ? setMode("create"): dispatch(getNotepadById(id));
+
+        console.log(notes);
     },[mode, dispatch, id])
 
     React.useEffect(() => {
@@ -32,11 +44,6 @@ const NotepadModule = () => {
         setTitle(notepad?.title);
         setNotes(notepad?.notes);
     }, [notepad]);
-
-
-    const handleAddNote = () => {
-        setNotes([...notes, { title: newNoteTitle, description: newNoteDesc, id: generateId() },]);
-    };
 
     const handleInputs = (e: React.FormEvent<HTMLInputElement> | React.FormEvent<HTMLTextAreaElement> ) =>{
         if(e.currentTarget.name === 'newNoteTitle'){setNewNoteTitle(e.currentTarget.value)
@@ -68,9 +75,21 @@ const NotepadModule = () => {
         dispatch(editNotepad({ notepadName: title }, notepad.id));
     };
 
-    const handleNoteRemove = React.useCallback((note) => {
+    const handleAddNote = () => {
+        let title = newNoteTitle;
+        let description = newNoteDesc;
+        setNotes((prevNotes) =>{
+            return [...prevNotes, { title: title, description: description, id: generateId() },];
+        })
+    };
+
+    const handleNoteRemove = (note:INote) => {
+        if(mode === "update"){
             dispatch(removeNoteById(note, notepad.id));
-        }, [notepad]);
+        }else{
+            setNotes(notes.filter(item => item.id !== note.id));
+        }
+    };
 
     return (<div>
         <section className="title_of_notepad">
@@ -93,12 +112,10 @@ const NotepadModule = () => {
                                 buttonType={ButtonTypeEnum.view}/>
                         </div>
                         <div className="col-3">
-                            {(mode === 'update') && (
                                 <Button
                                     text={(mode === 'update') ? "Save" : "Create"}
                                     onClick={handleSaveNotepad}
                                     buttonType={ButtonTypeEnum.save}/>
-                            )}
                         </div>
                         <div className="col-3">
                             <Button
@@ -143,6 +160,11 @@ const NotepadModule = () => {
                 </div>
             </div>
         </section>
+        <br />
+        <br />
+        <br />
+        <br />
+        <hr />
         <section className="add_notes_list">
             {notes?.map((note) => (
                 <Note key={note.id} data={note} onChange={handleNoteChange} onRemove={handleNoteRemove}/>

@@ -5,6 +5,7 @@ import {RootState} from "./../redux/reducers"
 import {Link} from "react-router-dom"
 import {getNotepads} from "../modules/NotepadModule/redux/actions";
 import {v4 as uuidv4} from "uuid";
+import {Paths} from "../config/enum/Paths";
 
 interface IProps {
     children: JSX.Element;
@@ -19,7 +20,7 @@ const Home: React.FC<IProps> = ({children}) => {
         <div className="row">
             <div className="col-8"><h3>Notepads list</h3></div>
             <div className="col-4">
-                <Link  to={"/notepads/create"}>Create new one</Link>
+                <Link  to={Paths.CREATE_NOTEPAD}>Create new one</Link>
             </div>
         </div>
 
