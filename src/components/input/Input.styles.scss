@@ -1,0 +1,14 @@
+@import "./../../config/styles/Variables.styles";
+
+.base-input {
+  border: 1px solid $borderColor;
+  color: $textColor;
+  font-size: $inputLabel;
+  font-family: $mainFont;
+}
+
+.base-input::placeholder{
+  color: $placeholderColor;
+  font-size: $inputLabel;
+  font-family: $mainFont;
+}

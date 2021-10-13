@@ -7,20 +7,19 @@ export enum ThemeEnum {
 }
 
 interface IProps {
-    children: React.ReactChild | React.ReactNode;
+    children: JSX.Element
     theme: ThemeEnum;
 }
 
 const Layout: React.FC<IProps> = ({theme, children}) => {
-    return (<section className="wrapper"><div className={theme+' container bd-example'}>
-        <div className="card">
+    return (<div className={theme}>
+        <h1>Notepad Application</h1>
+        <div className="card layout-body">
             <div className="card-body">
                 {children}
-                <h5 className="card-title">Special title treatment</h5>
-                <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
             </div>
         </div>
-    </div></section>);
+    </div>);
 };
 
 export default Layout;

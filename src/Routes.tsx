@@ -5,7 +5,7 @@ import {Paths} from "./config/enum/Paths";
 import NotFound from "./pages/NotFound";
 import Notepad from "./pages/Notepad";
 import Home from "./pages/Home";
-import Index from "./modules/Charts/containers";
+import Dashboard from "./modules/DashboardModule";
 
 const Routes: React.FC = () => {
   return (
@@ -14,7 +14,7 @@ const Routes: React.FC = () => {
               <Route exact path={Paths.HOME_PAGE} component={Home} />
               <Route exact path={Paths.CREATE_NOTEPAD} component={Notepad}/>
               <Route exact path={Paths.NOTEPAD_BY_ID} component={Notepad} />
-              <Route exact path={Paths.CHARTS} component={Index} />
+              <Route exact path={Paths.DASHBOARD} component={Dashboard} />
               <Route component={NotFound} />
           </Switch>
       </Layout>

@@ -10,9 +10,15 @@ import {RootState} from "../../redux/reducers";
 import {useDispatch, useSelector} from "react-redux";
 import Textarea from "../../components/textarea";
 import Note from "./components/Note";
+import { Link } from "react-router-dom";
 
 interface IProps {
     NotepadMode?: string
+}
+
+export enum MODES {
+    CREATE = "CREATE",
+    UPDATE = "UPDATE",
 }
 
 const NotepadModule: React.FC<IProps> = ({NotepadMode}) => {
@@ -24,20 +30,20 @@ const NotepadModule: React.FC<IProps> = ({NotepadMode}) => {
     const [newNoteTitle, setNewNoteTitle] = useState("");
     const [newNoteDesc, setNewNoteDesc] = useState("");
     const { id }: { id: string } = useParams();
-    const notepad: INotepad = useSelector((state: RootState) => state.notepads.idMap[id]);
-    const [mode, setMode] = useState<string>("")
+
+
+    const notepad: INotepad = useSelector(
+        (state: RootState) => state.notepads.idMap[id]
+    );
 
     React.useEffect(() => {
-        if(NotepadMode) {setMode(NotepadMode)}else
-        if(!id){setMode("create");
-        }else{
+        console.log(id)
+        if(NotepadMode === MODES.UPDATE) {
             dispatch(getNotepadById(id));
-            setMode("update")
         }
-        (!id) ? setMode("create"): dispatch(getNotepadById(id));
 
-        console.log(notes);
-    },[mode, dispatch, id])
+        console.log(notepad)
+    },[NotepadMode, dispatch, id]);
 
     React.useEffect(() => {
         if (!notepad) return;
@@ -51,7 +57,7 @@ const NotepadModule: React.FC<IProps> = ({NotepadMode}) => {
     }
 
     const handleSaveNotepad = () => {
-        if(mode === 'update'){
+        if(NotepadMode === MODES.UPDATE){
             dispatch(editNotepad({ notepadName: title, files: notes, id: id, created_at: new Date() }, id));
             history.push(Paths.HOME_PAGE)
         }else{
@@ -66,12 +72,12 @@ const NotepadModule: React.FC<IProps> = ({NotepadMode}) => {
             if (value !== notesClone[foundIndex][key]) {
                 notesClone[foundIndex][key] = value;
                 setNotes(notesClone);
-                if (mode === 'update') {dispatch(editNotepad(notesClone[foundIndex], notepad.id));}
+                if (NotepadMode === MODES.UPDATE) {dispatch(editNotepad(notesClone[foundIndex], notepad.id));}
             }
-        }, [notes, dispatch, notepad, (mode === 'create')]);
+        }, [notes, dispatch, notepad, (NotepadMode === MODES.CREATE)]);
 
     const handleNotepadNameChanged = () => {
-        if (mode !== 'update') return;
+        if (NotepadMode !== MODES.UPDATE) return;
         dispatch(editNotepad({ notepadName: title }, notepad.id));
     };
 
@@ -84,7 +90,7 @@ const NotepadModule: React.FC<IProps> = ({NotepadMode}) => {
     };
 
     const handleNoteRemove = (note:INote) => {
-        if(mode === "update"){
+        if(NotepadMode === MODES.UPDATE){
             dispatch(removeNoteById(note, notepad.id));
         }else{
             setNotes(notes.filter(item => item.id !== note.id));
@@ -93,6 +99,9 @@ const NotepadModule: React.FC<IProps> = ({NotepadMode}) => {
 
     return (<div>
         <section className="title_of_notepad">
+            <div className="row mx-auto">
+                <div className="col"><h6>Notepad Title</h6></div>
+            </div>
             <div className="row mx-auto justify-content-between">
                 <div className="col-6">
                     <Input
@@ -106,14 +115,16 @@ const NotepadModule: React.FC<IProps> = ({NotepadMode}) => {
                 <div className="col-6">
                     <div className="row mx-auto justify-content-end">
                         <div className="col-3">
+                            <Link  to={Paths.DASHBOARD}>
                             <Button
-                                text="View State"
+                                text="View state"
                                 onClick={() => {}}
                                 buttonType={ButtonTypeEnum.view}/>
+                            </Link>
                         </div>
                         <div className="col-3">
                                 <Button
-                                    text={(mode === 'update') ? "Save" : "Create"}
+                                    text={(NotepadMode === MODES.UPDATE) ? "Save" : "Create"}
                                     onClick={handleSaveNotepad}
                                     buttonType={ButtonTypeEnum.save}/>
                         </div>
@@ -127,9 +138,16 @@ const NotepadModule: React.FC<IProps> = ({NotepadMode}) => {
                 </div>
             </div>
         </section>
+        <br />
         <section className="add_new_note">
+            <div className="row mx-auto" >
+                <div className="col">
+                    <h3>My Notes</h3>
+                </div>
+            </div>
             <div className="row ">
                 <div className="col">
+
                     <div className="row mx-auto justify-content-between">
                         <div className="col-6">
                             <Input
@@ -141,7 +159,7 @@ const NotepadModule: React.FC<IProps> = ({NotepadMode}) => {
                             />
                         </div>
                     </div>
-                    <div className="row mx-auto justify-content-between">
+                    <div className="row mx-auto justify-content-between mt-2">
                         <div className="col-6">
                             <Textarea
                                 key="new_note_desc"
@@ -152,7 +170,7 @@ const NotepadModule: React.FC<IProps> = ({NotepadMode}) => {
                             />
                         </div>
                     </div>
-                    <div className="row mx-auto justify-content-between">
+                    <div className="row mx-auto justify-content-between mt-2">
                         <div className="col-6">
                             <Button text="Add" onClick={handleAddNote} buttonType={ButtonTypeEnum.add}/>
                         </div>
@@ -162,9 +180,6 @@ const NotepadModule: React.FC<IProps> = ({NotepadMode}) => {
         </section>
         <br />
         <br />
-        <br />
-        <br />
-        <hr />
         <section className="add_notes_list">
             {notes?.map((note) => (
                 <Note key={note.id} data={note} onChange={handleNoteChange} onRemove={handleNoteRemove}/>

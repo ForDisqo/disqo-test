@@ -3,9 +3,7 @@ import {takeLatest, call, put} from "redux-saga/effects";
 import GithubApiClient from "./../../../../service/GithubApiClient";
 import {adaptNotepads} from "../../AdaptNotepads";
 import {INote, INotepad, INotepadFile} from "../../Interfaces";
-import {
-    ConstantsNotepad
-} from "../actions/Enum";
+import {ConstantsNotepad} from "../actions/Enum";
 import {
     addNotepadSuccess,
     getNotepadByIdSuccess,

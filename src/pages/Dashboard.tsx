@@ -1,11 +1,9 @@
 import React from "react";
+import DashboardModule from "./../modules/DashboardModule"
 
-interface IProps {
-    children: JSX.Element;
-}
 
-const Dashboard: React.FC<IProps> = ({ children }) => {
-    return <div><h1>Dashboard</h1>{children}</div>;
+const Dashboard = () => {
+    return <div><DashboardModule /></div>;
 };
 
 export default Dashboard;

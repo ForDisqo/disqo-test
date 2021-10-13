@@ -1,0 +1,13 @@
+@import "./../../config/styles/Variables.styles";
+
+textarea {
+  border: 1px solid $borderColor;
+  color: $textColor;
+  font-size: $inputLabel;
+  font-family: $mainFont;
+}
+
+textarea::placeholder{
+  color: $placeholderColor;
+  font-size: $inputLabel;
+}

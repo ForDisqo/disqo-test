@@ -1,5 +1,5 @@
 import Button from "./button";
 import Input from "./input";
-import Chart from "./Chart/Chart";
+import Textarea from "./textarea"
 
-export { Button, Input, Chart };
+export { Button, Input, Textarea };

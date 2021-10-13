@@ -6,6 +6,7 @@ import {Link} from "react-router-dom"
 import {getNotepads} from "../modules/NotepadModule/redux/actions";
 import {v4 as uuidv4} from "uuid";
 import {Paths} from "../config/enum/Paths";
+import Button, {ButtonTypeEnum} from "../components/button";
 
 interface IProps {
     children: JSX.Element;
@@ -17,17 +18,29 @@ const Home: React.FC<IProps> = ({children}) => {
     const notepads: INotepad[] = useSelector((state: RootState) => state.notepads.data, shallowEqual);
 
     return (<div className="container">
-        <div className="row">
-            <div className="col-8"><h3>Notepads list</h3></div>
-            <div className="col-4">
-                <Link  to={Paths.CREATE_NOTEPAD}>Create new one</Link>
+        <div className="row justify-content-between">
+            <div className="col-6"><h3>Notepads list</h3></div>
+            <div className="col-6 d-flex justify-content-end">
+                <Link  to={Paths.CREATE_NOTEPAD} className="float-right">
+                    <Button
+                        text="Create new one"
+                        onClick={() => {}}
+                        buttonType={ButtonTypeEnum.view}/>
+                </Link>
+                <Link  to={Paths.DASHBOARD} className="float-right">
+                    <Button
+                        text="View state"
+                        onClick={() => {}}
+                        buttonType={ButtonTypeEnum.view}/>
+                </Link>
             </div>
         </div>
 
-
-
         <br />
-        {!notepads.length ? (<h1>You don't have any notepads yet (</h1>) : (<ul className="list-group ">
+        <br />
+        <hr />
+
+        {!notepads.length ? (<h1>Please wait</h1>) : (<ul className="list-group ">
             {notepads?.map((notepad: INotepad) => (
                 <li key={uuidv4()} className="list-group-item">
                     <Link  to={"/notepads/"+notepad.id}>{notepad.title}</Link>

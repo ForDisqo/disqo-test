@@ -6,8 +6,8 @@ import {INote} from "../Interfaces";
 import "./Note.styles.scss";
 
 interface IProps {
-    onChange?: (key: string, value: string, id: string) => void;
-    onRemove?: (data: INote) => void;
+    onChange: (key: string, value: string, id: string) => void;
+    onRemove: (data: INote) => void;
     mode?: string,
     onAdd?: (data: INote) => void;
     id?: string;
@@ -32,17 +32,15 @@ const Note: React.FC<IProps> = ({data, onChange, onRemove, onAdd , mode}) => {
             default:
                 return false;
         }
-        // @ts-ignore
         onChange(key, e.currentTarget.value, noteId);
     };
 
     const handleRemove = () =>{
-        // @ts-ignore
         onRemove(noteData);
     }
 
     const handleAdd = () => {
-        // @ts-ignore
+        if(onAdd)
         onAdd(noteData)
     }
 
@@ -66,7 +64,7 @@ const Note: React.FC<IProps> = ({data, onChange, onRemove, onAdd , mode}) => {
                         />
                     </div>
                 </div>
-                <div className="row mx-auto justify-content-between">
+                <div className="row mx-auto justify-content-between mt-2">
                     <div className="col-6">
                         <Textarea
                             name="change_note_desc"
@@ -81,8 +79,6 @@ const Note: React.FC<IProps> = ({data, onChange, onRemove, onAdd , mode}) => {
                             <Button text="Add" onClick={handleAdd} buttonType={ButtonTypeEnum.add}/>
                         </div>
                     </div>):(<div></div>)}
-
-
             </div>
         </div>
     );

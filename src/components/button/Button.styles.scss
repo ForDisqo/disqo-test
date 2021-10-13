@@ -1,0 +1,25 @@
+@import "./../../config/styles/Variables.styles";
+
+
+.base-button.green {
+  background-color: $green;
+}
+
+.base-button.blue {
+  background-color: $blue;
+}
+
+.base-button.red {
+  background-color: $red;
+}
+
+.base-button.view {
+  background-color: $white;
+}
+
+.base-button {
+  border: 1px solid $borderColor;
+  color: $textColor;
+  font-size: $inputLabel;
+  font-family: $mainFont;
+}

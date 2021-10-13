@@ -15,7 +15,7 @@ const Input: React.FC<IProps> = ({ id = uuidv4(), placeholder, ...rest }) => {
   return (
     <div className="form-group">
         <input type='text' contentEditable={true} disabled={false} id={id} placeholder={placeholder}
-               className="form-control" {...rest} />
+               className="form-control base-input" {...rest} />
     </div>
   );
 };

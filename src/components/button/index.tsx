@@ -20,7 +20,7 @@ interface IProps {
 }
 
 const Button: React.FC<IProps> = ({text, buttonType, ...rest}) => {
-    return <button type="button" className={buttonType +" btn"} {...rest}>{text}</button>;
+    return <button type="button" className={buttonType +" btn base-button"} {...rest}>{text}</button>;
 };
 
 export default Button;
