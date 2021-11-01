@@ -26,7 +26,7 @@ class GithubApiClient extends HttpClient {
 
       create: (notepad: INotepad) => this.post("/gists", notepad),
 
-      update: (notepad: any) => this.patch(`/gists/${notepad.id}`, notepad),
+      update: (notepad: any) => this.put(`/gists/${notepad.id}`, notepad),
 
       delete: (id: string) => this.delete(`/gists/${id}`),
 

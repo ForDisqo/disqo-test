@@ -1,5 +1,5 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { GET_PUBLIC_GISTS_SUCCES } from "../actions";
+import { GET_PUBLIC_GISTS_SUCCESS } from "../actions";
 import {IGist} from "../../Interfaces";
 
 export interface IProfileReducerState {
@@ -20,7 +20,7 @@ const gistsReducer = (
 ) => {
   const { type, payload } = action;
   switch (type) {
-    case GET_PUBLIC_GISTS_SUCCES:
+    case GET_PUBLIC_GISTS_SUCCESS:
       return {
         ...state,
         gistCreated: [...payload.gistCreated, ...state.gistCreated],
